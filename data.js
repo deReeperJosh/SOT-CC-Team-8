@@ -25,16 +25,17 @@ const data = {
     }
 } ;
 
-async function getData(){
-    let domparser = new DOMParser()​​;
+(async function (){  
     const response = await fetch("https://www.ishopnewworld.co.nz/Search?q=butter");
     if(response.ok){
         const responseText = await response.text(); 
-        const doc = domparser.parseFromString(responseText, "text/html");
-        console.log(doc);
+       const parser = new DOMParser(); 
+       const doc = parser.parseFromString(responseText, 'text/html');
     }
-}
+})();
 
-getData();
+
+const itemArray = Array.from(itemDoc.getElementsByClassName('js-product-card-footer'));
+console.log(itemArray);
 
 Array.from(document.getElementsByClassName('js-product-card-footer')).map(element => JSON.parse(element.getAttribute('data-options')));
