@@ -1,7 +1,7 @@
-(function() {
+(async function() {
     const tableRef = document.getElementById('table-body');
 
-    const items = data.getItemsV1();
+    const items = await data.getItemsV2();
 
     items.forEach((item) => {
         console.log(item);
@@ -17,14 +17,7 @@
     });
 })();
 
-(async function() {
-    const response = await fetch("https://www.ishopnewworld.co.nz/Search?q=butter");
-    if (response.ok) {
-        const responseText = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(responseText, 'text/html');
-    }
-})();
+
 
 function sortTable() {
     const table = document.getElementById("mainTable");

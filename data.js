@@ -57,6 +57,8 @@ const data = {
 
              //
             //console.log(formattedArray);
+
+            return formattedArray;
         }
     }
 };
