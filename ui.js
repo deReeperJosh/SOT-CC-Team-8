@@ -7,7 +7,7 @@
         console.log(item);
         const row = document.createElement('tr');
         const name = document.createElement('td');
-        name.innerText = item.itemName;
+        name.innerText = item.brand;
         const price = document.createElement('td');
         price.innerText = item.price;
         row.appendChild(name);
