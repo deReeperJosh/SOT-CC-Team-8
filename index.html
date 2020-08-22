@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>title</title>
-  </head>
-  <body>
-      <script src="ui.js"></script>
-      <script src="data.js"></script>
-  </body>
+    <link href="index.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <img src="yellow butter.png">
+        <h1>Pass the Butter</h1>
+        <p>Butter Prices</p>
+    </div>
+    <table id="mainTable" class="center">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <tr>
+                <td>Tararua</td>
+                <td>5.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="data.js"></script>
+    <script src="ui.js"></script>
+</body>
+
 </html>
