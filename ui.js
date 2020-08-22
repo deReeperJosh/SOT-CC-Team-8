@@ -8,6 +8,7 @@
         const row = document.createElement('tr');
         const name = document.createElement('td');
         name.innerText = item.brand;
+        console.log(name);
         const price = document.createElement('td');
         price.innerText = item.price;
         row.appendChild(name);
