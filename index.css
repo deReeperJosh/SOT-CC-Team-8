@@ -24,6 +24,10 @@ img {
     position: absolute;
 }
 
+.hidden {
+    display: none;
+}
+
 thead,
 tfoot {
     background-color: #3f87a6;
