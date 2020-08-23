@@ -1,13 +1,22 @@
-(async function() {
-    const tableRef = document.getElementById('table-body');
+let _data = [];
 
-    const items = await data.getItemsV4();
+(async function() {
+    _data = await data.getItemsV4();
 
     const gifRef = document.getElementById('loading');
 
     gifRef.parentNode.removeChild(gifRef);
 
-    items[0].forEach((item) => {
+    buildTable();
+})();
+
+function buildTable() {
+    const tableRef = document.getElementById('table-body');
+    while (tableRef.hasChildNodes()) {
+        tableRef.removeChild(tableRef.lastChild);
+    }
+
+    _data.forEach((item) => {
         const row = document.createElement('tr');
         const name = document.createElement('td');
         name.innerText = item.brand;
@@ -20,7 +29,18 @@
         row.appendChild(price);
         tableRef.appendChild(row);
     });
-})();
+}
+
+function sortTableV2() {
+    _data = _data.sort((a, b) => {
+        return a.brand - b.brand;
+    })
+    _data = _data.sort((a, b) => {
+        if (a.brand == b.brand) { return 0; }
+        return a.price - b.price;
+    })
+    buildTable();
+}
 
 
 
