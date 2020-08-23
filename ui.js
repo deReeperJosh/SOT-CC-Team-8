@@ -1,21 +1,22 @@
 (async function() {
     const tableRef = document.getElementById('table-body');
 
-    const items = await data.getItemsV2();
+    const items = await data.getItemsV4();
 
     const gifRef = document.getElementById('loading');
 
     gifRef.parentNode.removeChild(gifRef);
 
-    items.forEach((item) => {
-        console.log(item);
+    items[0].forEach((item) => {
         const row = document.createElement('tr');
         const name = document.createElement('td');
         name.innerText = item.brand;
-        console.log(name);
         const price = document.createElement('td');
         price.innerText = item.price;
+        const storeName = document.createElement('td');
+        storeName.innerText = item.storeName;
         row.appendChild(name);
+        row.appendChild(storeName);
         row.appendChild(price);
         tableRef.appendChild(row);
     });
@@ -42,8 +43,8 @@ function sortTable() {
                 shouldSwitch = false;
                 /* Get the two elements you want to compare,
                 one from current row and one from the next: */
-                x = rows[i].getElementsByTagName("td")[1];
-                y = rows[i + 1].getElementsByTagName("td")[1];
+                x = rows[i].getElementsByTagName("td")[2];
+                y = rows[i + 1].getElementsByTagName("td")[2];
                 // Check if the two rows should switch place:
                 if (x.innerText > y.innerText) {
                     // If so, mark as a switch and break the loop:
