@@ -11,20 +11,32 @@
     <div class="header">
         <img src="yellow butter.png">
         <h1>Pass the Butter</h1>
-        <p>Butter Prices</p>
+        <p>Better Butter For Your Budget!</p>
     </div>
-    <button id= "sortButton" onclick="sortTable()">Sort</button>
     <table id="mainTable" class="center">
-        <thead>
+        <thead class="invisibleTable">
+            <tr>
+                <td>
+
+                </td>
+                <td>
+
+                    <button id="sortButton" onclick="sortTable()">Sort</button>
+
+                </td>
+            </tr>
+        </thead>
+        <thead class="resultsTable">
             <tr>
                 <th>Name</th>
                 <th>Price</th>
             </tr>
         </thead>
-        <tbody id="table-body">
+        <tbody id="table-body" class="resultsTable">
         </tbody>
-    </table>
 
+    </table>
+    <img src="loading-spinner.gif" id="loading" style="left: 46%;">
     <script src="data.js"></script>
     <script src="ui.js"></script>
 </body>
