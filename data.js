@@ -60,5 +60,58 @@ const data = {
 
             return formattedArray;
         }
+    },
+
+    getItemsV3: async function() {
+
+      
+      const newWorldItems = getItems('New World', 'https://www.ishopnewworld.co.nz/Search?q=butter' );
+      const pakNSaveItems = getItems(`Pak'nSave`, 'https://www.paknsaveonline.co.nz/Search?q=butter');
+      const result = await Promise.all([newWorldItems,pakNSaveItems]);
+
+      return [result.flat(2)];
+
     }
-};
+
+    
+}
+
+  async function getItems(storeName, Url) {
+    const response = await fetch(Url);
+        if (response.ok) {
+            const responseText = await response.text();
+            const parser = new DOMParser();
+
+            // html doc from parsed text from new world
+            const doc = parser.parseFromString(responseText, 'text/html');
+
+            // html array to js array
+            const itemArray = Array.from(doc.getElementsByClassName('js-product-card-footer'));
+
+            //
+           // console.log(itemArray);
+
+            // convert all elements to js objects
+            const jsArray = itemArray.map(element => JSON.parse(element.getAttribute('data-options')));
+
+            //
+            //console.log(jsArray);
+
+            // format converted data into expected json array
+            return jsArray.map(element => {
+                return {
+                    storeName: storeName,
+                    itemName: 'butter',
+                    brand: element.productName,
+                    price: element.ProductDetails.PricePerItem
+                }
+            }
+            );
+
+             //
+            //console.log(formattedArray);
+        }
+
+
+  }
+
