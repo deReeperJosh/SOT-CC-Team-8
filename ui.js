@@ -10,6 +10,13 @@ let _data = [];
     buildTable();
 })();
 
+async function searchData() {
+    const value = document.getElementById('searchValue').value;
+    _data = await data.getItemsV4(value);
+
+    buildTable();
+}
+
 function buildTable() {
     const tableRef = document.getElementById('table-body');
     while (tableRef.hasChildNodes()) {
@@ -33,12 +40,12 @@ function buildTable() {
 
 function sortTableV2() {
     _data = _data.sort((a, b) => {
-        return a.brand - b.brand;
-    })
+        return a.price - b.price;
+    });
     _data = _data.sort((a, b) => {
         if (a.brand == b.brand) { return 0; }
         return a.price - b.price;
-    })
+    });
     buildTable();
 }
 
