@@ -76,7 +76,6 @@ const data = {
       const newWorldItems = getItems('New World', 'https://www.ishopnewworld.co.nz/Search?q=', item );
       const pakNSaveItems = getItems(`Pak'nSave`, 'https://www.paknsaveonline.co.nz/Search?q=', item);
       const result = await Promise.all([newWorldItems,pakNSaveItems]);
-      console.log([result.flat(2)]);
 
       return [result.flat(2)];
 
@@ -125,4 +124,4 @@ const data = {
 
 
   }
-data.getItemsV4('milk');
+
