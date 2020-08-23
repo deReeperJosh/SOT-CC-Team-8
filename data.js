@@ -63,19 +63,32 @@ const data = {
     getItemsV3: async function() {
 
       
-      const newWorldItems = getItems('New World', 'https://www.ishopnewworld.co.nz/Search?q=butter' );
-      const pakNSaveItems = getItems(`Pak'nSave`, 'https://www.paknsaveonline.co.nz/Search?q=butter');
+      const newWorldItems = getItems('New World', 'https://www.ishopnewworld.co.nz/Search?q=' );
+      const pakNSaveItems = getItems(`Pak'nSave`, 'https://www.paknsaveonline.co.nz/Search?q=');
       const result = await Promise.all([newWorldItems,pakNSaveItems]);
 
       return [result.flat(2)];
+
+    },
+
+    getItemsV4: async function(item = 'butter') {
+
+      const newWorldItems = getItems('New World', 'https://www.ishopnewworld.co.nz/Search?q=', item );
+      const pakNSaveItems = getItems(`Pak'nSave`, 'https://www.paknsaveonline.co.nz/Search?q=', item);
+      const result = await Promise.all([newWorldItems,pakNSaveItems]);
+      console.log([result.flat(2)]);
+
+      return [result.flat(2)];
+
+
 
     }
 
     
 }
 
-  async function getItems(storeName, Url) {
-    const response = await fetch(Url);
+  async function getItems(storeName, Url, item) {
+    const response = await fetch(Url + item);
         if (response.ok) {
             const responseText = await response.text();
             const parser = new DOMParser();
@@ -99,7 +112,7 @@ const data = {
             return jsArray.map(element => {
                 return {
                     storeName: storeName,
-                    itemName: 'butter',
+                    itemName: item,
                     brand: element.productName,
                     price: element.ProductDetails.PricePerItem
                 }
@@ -112,4 +125,4 @@ const data = {
 
 
   }
-
+data.getItemsV4('milk');
