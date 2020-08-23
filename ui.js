@@ -1,16 +1,16 @@
 let _data = [];
+const gifRef = document.getElementById('loading');
+const mainRef = document.getElementById('mainTable');
 
 (async function() {
     _data = await data.getItemsV4();
-
-    const gifRef = document.getElementById('loading');
-
-    gifRef.parentNode.removeChild(gifRef);
 
     buildTable();
 })();
 
 async function searchData() {
+    gifRef.classList.remove('hidden');
+    mainRef.classList.add('hidden');
     const value = document.getElementById('searchValue').value;
     _data = await data.getItemsV4(value);
 
@@ -18,6 +18,8 @@ async function searchData() {
 }
 
 function buildTable() {
+    gifRef.classList.add('hidden');
+    mainRef.classList.remove('hidden');
     const tableRef = document.getElementById('table-body');
     while (tableRef.hasChildNodes()) {
         tableRef.removeChild(tableRef.lastChild);
